@@ -1,6 +1,6 @@
 <?php
 
-include("/config/setting.php");
+include( __DIR__ . "/config/setting.php");
 
 $groupId = $_GET["groupId"];
 $content = $_GET["content"];
@@ -8,7 +8,7 @@ $content = $_GET["content"];
 $userIds = [];
 $message = !empty($content) ? $content : 'Hello!';
 
-include("file.php");
+include( __DIR__ . "/config/file.php");
  
 if (count($db['user']) === 0) {
     echo 'No user.';

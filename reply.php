@@ -1,8 +1,8 @@
 <?php
  
-include("/config/setting.php"); 
+include( __DIR__ . "/config/setting.php"); 
  
-include("/config/file.php"); 
+include( __DIR__ . "/config/file.php"); 
 
 $bodyMsg = file_get_contents('php://input');
  
@@ -36,9 +36,9 @@ foreach ($obj['events'] as $event) {
 	if ($event['message']['text'] == KEYWORD_BEAUTY) {
 		
 		$message = [
-		  "type": "image",
-		  "originalContentUrl": "圖片網址",
-		  "previewImageUrl": "縮圖網址"
+		  "type"=> "image",
+		  "originalContentUrl"=> "圖片網址",
+		  "previewImageUrl"=> "縮圖網址"
 		];
 		$sedMessage = true;
 	}
@@ -48,8 +48,8 @@ foreach ($obj['events'] as $event) {
 	if ($sedMessage) {
 		// Make payload
 		$payload = [
-			'replyToken' => $event['replyToken']
-			'messages' => $message;
+			'replyToken' => $event['replyToken'],
+			'messages' => $message
 		];
 	 	
 		// Send reply API

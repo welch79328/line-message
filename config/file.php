@@ -1,6 +1,6 @@
 <?php
 
-$dbFilePath = __DIR__ . '/line-db.json';  // user info database file path
+$dbFilePath = dirname(dirname(__FILE__)) . '/line-db.json';  // user info database file path
 
 // open json database
 if (!file_exists($dbFilePath)) {

@@ -1,4 +1,4 @@
-<?php include("file.php");?>
+<?php include( __DIR__ . "/config/file.php");?>
 <!DOCTYPE html>
 <html lang="tw">
     <head>
