@@ -1,9 +1,10 @@
 <?php
 
+include("/config/setting.php");
+
 $groupId = $_GET["groupId"];
 $content = $_GET["content"];
- 
-$channelAccessToken = 'FLPX90FqeLauLpLsrMY/hVE/B6RYCRKk6zjXDPIFa/NgMOMLLOAzf/3DcFFHLi9muxpK7qKgnUCb7XnSeaqOHGAdvPp1I+2ZxpmJnZosQ2AOXU4zWqQAkNORUgQnHOZX7DL8RjBvM+lgrbLOs+NLlwdB04t89/1O/w1cDnyilFU=';
+
 $userIds = [];
 $message = !empty($content) ? $content : 'Hello!';
 
@@ -42,8 +43,7 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
-    'Authorization: Bearer ' . $channelAccessToken
+    'Authorization: Bearer ' . CHANNEL_ACCESS_TOKEN
 ]);
 $result = curl_exec($ch);
-echo $result;
 curl_close($ch);
