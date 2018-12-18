@@ -117,7 +117,35 @@ foreach ($obj['events'] as $event) {
 		}
 	}	
 
+	include( __DIR__ . "/config/constellationfile.php");
 
+        foreach ($constellation_name as $cname) {
+                if ($event['message']['text'] == $cname) {
+                        $constellationContent = '';
+                        $constellationContent .= $constellationdb['constellation'][$cname]['title'].'                                     ';
+                        $constellationContent .= $constellationdb['constellation'][$cname]['content0'].'                                     ';
+                        $constellationContent .= $constellationdb['constellation'][$cname]['content1'].'                                     ';
+			$constellationContent .= $constellationdb['constellation'][$cname]['content2'].'                                     ';
+			$constellationContent .= $constellationdb['constellation'][$cname]['content3'].'                                     ';
+			$constellationContent .= $constellationdb['constellation'][$cname]['content4'].'                                     ';
+			$constellationContent .= $constellationdb['constellation'][$cname]['content5'].'                                     ';
+			$constellationContent .= $constellationdb['constellation'][$cname]['content6'].'                                     ';
+			$constellationContent .= $constellationdb['constellation'][$cname]['content7'].'                                     ';
+                        
+
+                        $payload = [
+                                'replyToken' => $event['replyToken'],
+                                'messages' => [
+                                        [
+                                                'type' => 'text',
+                                                'text' => $constellationContent
+                                        ]
+                                ]
+
+                        ];
+                $sedMessage = true;
+                }
+        }
 
 	if ($sedMessage) {
 		// Make payload

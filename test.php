@@ -41,13 +41,12 @@ include( __DIR__ . "/config/weatherfile.php");
 foreach ($citys as $city) {
      
                 $weatherContent = '';
-               	foreach ($weatherdb['weather'][$city] as $v=>$k){
-			print_r($k['rain']);
-                       /*$weatherContent .= $v;
-                       $weatherContent .= $v['temperature'];
-                       $weatherContent .= $v['situation'];
-                       $weatherContent .= $v['comfortable'];
-                       $weatherContent .= $v['rain'];*/
+               	foreach ($weatherdb['weather'][$city] as $v=>$k) {
+                       $weatherContent .= $v;
+                       $weatherContent .= $k['temperature'];
+                       $weatherContent .= $k['situation'];
+                       $weatherContent .= $k['comfortable'];
+                       $weatherContent .= $k['rain'];
                   }
                 
 	                 
@@ -55,5 +54,28 @@ foreach ($citys as $city) {
       
  }
 
+
+/*
+  include( __DIR__ . "/config/constellationfile.php");
+
+        foreach ($constellation_name as $cname) {
+			echo $cname;               
+                        $constellationContent = '';
+                        //foreach ($constellationdb['constellation'][$cname] as $v=>$k){
+				$constellationContent .= $constellationdb['constellation'][$cname]['title'].'                                     ';
+                                $constellationContent .= $constellationdb['constellation'][$cname]['content0'].'                                     ';
+                                $constellationContent .= $constellationdb['constellation'][$cname]['content1'].'                                     ';
+                                $constellationContent .= $constellationdb['constellation'][$cname]['content2'].'                                     ';
+                                $constellationContent .= $constellationdb['constellation'][$cname]['content3'].'                                     ';
+                                $constellationContent .= $constellationdb['constellation'][$cname]['content4'].'                                     ';
+                                $constellationContent .= $constellationdb['constellation'][$cname]['content5'].'                                     ';
+                                $constellationContent .= $constellationdb['constellation'][$cname]['content6'].'                                     ';
+                                $constellationContent .= $constellationdb['constellation'][$cname]['content7'].'                                     ';
+							
+				//print_r($v);
+			//}
+	echo $constellationContent;
+	}
+*/
 
 ?>

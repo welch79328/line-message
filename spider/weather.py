@@ -34,7 +34,7 @@ for city in citys:
 			th_name = str(th.get_text())
 			#print (th.get_text())
 			
-			value.setdefault(th_name,{})
+			value[th_name] = {}
 			
 			aa = 0
 		except:
@@ -49,17 +49,18 @@ for city in citys:
 				bb = td.get_text()
 				
 			if aa == 0:
-				value[th_name].setdefault('temperature',bb)
+				value[th_name]['temperature'] = bb
 			elif aa == 1:
-				value[th_name].setdefault('situation',bb)
+				value[th_name]['situation'] = bb
 			elif aa == 2:
-				value[th_name].setdefault('comfortable',bb)	
+				value[th_name]['comfortable'] = bb	
 			elif aa == 3:
-				value[th_name].setdefault('rain',bb)		
+				value[th_name]['rain'] = bb		
 				
 			aa = aa + 1
 		
-
+#	print (key)
+#	print (value)
 	try:
 		jsonFile = open(os.path.dirname(os.path.abspath(__file__))+"weather.json","r")
 		fileContent = jsonFile.read()
