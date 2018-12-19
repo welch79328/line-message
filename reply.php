@@ -16,11 +16,11 @@ foreach ($obj['events'] as $event) {
 
 	if (!isset($db['user'][$groupId])) {
        
-        	$db['user'][$groupId] = [
+        $db['user'][$groupId] = [
 			'groupId' => $groupId,
-            		'timestamp' => $event['timestamp']
-        	];
-        	file_put_contents($dbFilePath, json_encode($db));
+            'timestamp' => $event['timestamp']
+        ];
+        file_put_contents($dbFilePath, json_encode($db));
 	}
 
 	if ($event['message']['text'] == '###@@@') {
@@ -39,70 +39,65 @@ foreach ($obj['events'] as $event) {
 
 	if ($event['message']['stickerId'] == 13) {
 
-                $payload = [
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
-                                [
-                                        "type"=> "image",
-                                        "originalContentUrl"=> "https://adot.com.tw/message/images/13.jpg",
-                                        "previewImageUrl"=>"https://adot.com.tw/message/images/13.jpg"
-                                ]
-                        ]
-                ];
-                $sedMessage = true;
-        }
+        $payload = [
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+                [
+                    "type"=> "image",
+                    "originalContentUrl"=> "https://adot.com.tw/message/images/13.jpg",
+                    "previewImageUrl"=>"https://adot.com.tw/message/images/13.jpg"
+                ]
+            ]
+        ];
+        $sedMessage = true;
+    }
 
 
 	if ($event['message']['text'] == '抽') {
-		include( __DIR__ . "/config/beautyfile.php");
 		$beautyRand = array_rand($beautydb['beauty'],1);
 		$payload = [
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
+            'replyToken' => $event['replyToken'],
+            'messages' => [
 				[
-                  			"type"=> "image",
-					"originalContentUrl"=> "https://adot.com.tw/message/spider/file/".$beautydb['beauty'][$beautyRand],
-					"previewImageUrl"=>"https://adot.com.tw/message/spider/file/".$beautydb['beauty'][$beautyRand]
-               			] 
+          			"type"=> "image",
+					"originalContentUrl"=> FILE_URL."file/".$beautydb['beauty'][$beautyRand],
+					"previewImageUrl"=> FILE_URL."file/".$beautydb['beauty'][$beautyRand]
+       			] 
 			]
-                ];	
+        ];	
 		$sedMessage = true;
 	}
 
 	if ($event['message']['text'] == '抽帥哥') {
-                include( __DIR__ . "/config/handsomefile.php");
-                $handsomeRand = array_rand($handsomedb['handsome'],1);
-                $payload = [
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
-                                [
-                                        "type"=> "image",
-                                        "originalContentUrl"=> "https://adot.com.tw/message/spider/handsomefile/".$handsomedb['handsome'][$handsomeRand],
-                                        "previewImageUrl"=>"https://adot.com.tw/message/spider/handsomefile/".$handsomedb['handsome'][$handsomeRand]
-                                ]
-                        ]
-                ];
-                $sedMessage = true;
-        }
+        $handsomeRand = array_rand($handsomedb['handsome'],1);
+        $payload = [
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+                [
+                    "type"=> "image",
+                    "originalContentUrl"=> FILE_URL."handsomefile/".$handsomedb['handsome'][$handsomeRand],
+                    "previewImageUrl"=> FILE_URL."handsomefile/".$handsomedb['handsome'][$handsomeRand]
+                ]
+            ]
+        ];
+        $sedMessage = true;
+    }
 
 	if ($event['message']['text'] == '抽狗狗') {
-                include( __DIR__ . "/config/dogfile.php");
-                $dogRand = array_rand($dogdb['dog'],1);
-                $payload = [
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
-                                [
-                                        "type"=> "image",
-                                        "originalContentUrl"=> "https://adot.com.tw/message/spider/dogfile/".$dogdb['dog'][$dogRand],
-                                        "previewImageUrl"=>"https://adot.com.tw/message/spider/dogfile/".$dogdb['dog'][$dogRand]
-                                ]
-                        ]
-                ];
-                $sedMessage = true;
-        }
+        $dogRand = array_rand($dogdb['dog'],1);
+        $payload = [
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+                [
+                    "type"=> "image",
+                    "originalContentUrl"=> FILE_URL."dogfile/".$dogdb['dog'][$dogRand],
+                    "previewImageUrl"=> FILE_URL."dogfile/".$dogdb['dog'][$dogRand]
+                ]
+            ]
+        ];
+        $sedMessage = true;
+    }
 	
-
-	include( __DIR__ . "/config/weatherfile.php");
 
 	foreach ($citys as $city) {
 		if ($event['message']['text'] == $city.' 天氣') {
@@ -111,7 +106,6 @@ foreach ($obj['events'] as $event) {
 				$weathertitle = explode(" ",$v);
 				$weathertitle2 = explode("~",$weathertitle[2]);
 				$weatherContent .= $weathertitle[0].'                                     ';
-				//$weatherContent .= '時間:                                                             ';
 				$weatherContent .= $weathertitle[1].' '.$weathertitle2[0].'~'.$weathertitle2[1].' '.$weathertitle[3].'                             '; 
 				$weatherContent .= '溫度: '.$k['temperature'].'                                     ';
 				$weatherContent .= '天氣狀況: '.$k['situation'].'                       ';
@@ -130,39 +124,37 @@ foreach ($obj['events'] as $event) {
 				]
 
 			];
-		$sedMessage = true;
+			$sedMessage = true;
 		}
 	}	
 
-	include( __DIR__ . "/config/constellationfile.php");
 
-        foreach ($constellation_name as $cname) {
-                if ($event['message']['text'] == $cname) {
-                        $constellationContent = '';
-                        $constellationContent .= $constellationdb['constellation'][$cname]['title'].'                                     ';
-                        $constellationContent .= $constellationdb['constellation'][$cname]['content0'].'                                     ';
-                        $constellationContent .= $constellationdb['constellation'][$cname]['content1'].'                                     ';
+    foreach ($constellation_name as $cname) {
+        if ($event['message']['text'] == $cname) {
+            $constellationContent = '';
+            $constellationContent .= $constellationdb['constellation'][$cname]['title'].'                                     ';
+            $constellationContent .= $constellationdb['constellation'][$cname]['content0'].'                                     ';
+            $constellationContent .= $constellationdb['constellation'][$cname]['content1'].'                                     ';
 			$constellationContent .= $constellationdb['constellation'][$cname]['content2'].'                                     ';
 			$constellationContent .= $constellationdb['constellation'][$cname]['content3'].'                                     ';
 			$constellationContent .= $constellationdb['constellation'][$cname]['content4'].'                                     ';
 			$constellationContent .= $constellationdb['constellation'][$cname]['content5'].'                                     ';
 			$constellationContent .= $constellationdb['constellation'][$cname]['content6'].'                                     ';
 			$constellationContent .= $constellationdb['constellation'][$cname]['content7'].'                                     ';
-                        
+            
 
-                        $payload = [
-                                'replyToken' => $event['replyToken'],
-                                'messages' => [
-                                        [
-                                                'type' => 'text',
-                                                'text' => $constellationContent
-                                        ]
-                                ]
-
-                        ];
-                $sedMessage = true;
-                }
+            $payload = [
+                'replyToken' => $event['replyToken'],
+                'messages' => [
+                    [
+                        'type' => 'text',
+                        'text' => $constellationContent
+                    ]
+                ]
+            ];
+        	$sedMessage = true;
         }
+    }
 
 	if ($sedMessage) {
 		// Make payload

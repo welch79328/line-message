@@ -4,4 +4,8 @@ define('CHANNEL_ACCESS_TOKEN', 'brJH7MVeOb/ozgjcbi/oAciPU/Mp+wSq0mjlM3wNJ8rd5Tfs
 
 define('KEYWORD_BEAUTY', '抽');	
 
+define('PROJECT_PATH', dirname(dirname(__FILE__)));
+
+define('FILE_URL', 'https://adot.com.tw/message/spider/');	
+
 ?>
