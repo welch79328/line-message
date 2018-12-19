@@ -85,6 +85,23 @@ foreach ($obj['events'] as $event) {
                 $sedMessage = true;
         }
 
+	if ($event['message']['text'] == '抽狗狗') {
+                include( __DIR__ . "/config/dogfile.php");
+                $dogRand = array_rand($dogdb['dog'],1);
+                $payload = [
+                        'replyToken' => $event['replyToken'],
+                        'messages' => [
+                                [
+                                        "type"=> "image",
+                                        "originalContentUrl"=> "https://adot.com.tw/message/spider/dogfile/".$dogdb['dog'][$dogRand],
+                                        "previewImageUrl"=>"https://adot.com.tw/message/spider/dogfile/".$dogdb['dog'][$dogRand]
+                                ]
+                        ]
+                ];
+                $sedMessage = true;
+        }
+	
+
 	include( __DIR__ . "/config/weatherfile.php");
 
 	foreach ($citys as $city) {
