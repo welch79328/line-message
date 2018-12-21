@@ -52,6 +52,21 @@ foreach ($obj['events'] as $event) {
         $sedMessage = true;
     }
 
+    if ($event['message']['text'] == '捷運路線') {
+
+        $payload = [
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+                [
+                    "type"=> "image",
+                    "originalContentUrl"=> "https://adot.com.tw/message/images/mrt.jpg",
+                    "previewImageUrl"=>"https://adot.com.tw/message/images/mrt.jpg"
+                ]
+            ]
+        ];
+        $sedMessage = true;
+    }
+
 
 	if ($event['message']['text'] == '抽') {
 		$beautyRand = array_rand($beautydb['beauty'],1);
