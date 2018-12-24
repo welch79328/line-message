@@ -22,7 +22,7 @@ for constellation in constellation_list:
         bsObj = BeautifulSoup(html, "lxml")
         content = bsObj.find("div", {"class":"text"}).find("article")
         key = constellation_list[constellation]
-        value.setdefault('content',content.get_text())
+        value.setdefault('content',content.get_text().replace(" ","").replace("\n","").replace("\r",""))
  
         try:
                 jsonFile = open(os.path.dirname(os.path.abspath(__file__))+"constellation.json","r")
