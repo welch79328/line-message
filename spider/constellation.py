@@ -9,23 +9,21 @@ import datetime
 
 new_dict = {"constellation": {}}
 
-constellation_name = ['牡羊座','金牛座','雙子座','巨蟹座','獅子座','處女座','天秤座','天蠍座','射手座','摩羯座','水瓶座','雙魚座']
+#constellation_name = ['牡羊座','獅子座','射手座','金牛座','處女座','摩羯座','雙子座','天秤座','水瓶座','巨蟹座','天蠍座','雙魚座']
 
-for number in range(12):
+#constellation_list = ['Aries','Leo','Sagittarius','Taurus','Virgo','Capricorn','Gemini','Libra','Aquarius','Cancer','Scorpio','Pisces']
+
+constellation_list = {'Aries':'牡羊座','Leo':'獅子座','Sagittarius':'射手座','Taurus':'金牛座','Virgo':'處女座','Capricorn':'摩羯座','Gemini':'雙子座','Libra':'天秤座','Aquarius':'水瓶座','Cancer':'巨蟹座','Scorpio':'天蠍座','Pisces':'雙魚座'}
+
+for constellation in constellation_list:
         value = {}
         today=datetime.date.today()
-        html = urlopen('http://astro.click108.com.tw/daily_'+str(number)+'.php?iAcDay='+str(today)+'&iAstro='+str(number))
+        html = urlopen('https://www.daily-zodiac.com/mobile/zodiac/'+str(constellation))
         bsObj = BeautifulSoup(html, "lxml")
-        nameTitle = bsObj.find("div", {"class":"TODAY_CONTENT"}).find('h3')
-        nameList = bsObj.find("div", {"class":"FORTUNE_BG"}).findAll('p')
-        key = constellation_name[number]
-        value.setdefault('title',nameTitle.get_text())
-        aa = 0
-        for  name  in  nameList:
-    
-                value.setdefault('content'+str(aa),name.get_text())
-                aa = aa+1
-
+        content = bsObj.find("div", {"class":"text"}).find("article")
+        key = constellation_list[constellation]
+        value.setdefault('content',content.get_text())
+ 
         try:
                 jsonFile = open(os.path.dirname(os.path.abspath(__file__))+"constellation.json","r")
                 fileContent = jsonFile.read()

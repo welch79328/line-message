@@ -147,16 +147,8 @@ foreach ($obj['events'] as $event) {
     foreach ($constellation_name as $cname) {
         if ($event['message']['text'] == $cname) {
             $constellationContent = '';
-            $constellationContent .= $constellationdb['constellation'][$cname]['title'].'                                     ';
-            $constellationContent .= $constellationdb['constellation'][$cname]['content0'].'                                     ';
-            $constellationContent .= $constellationdb['constellation'][$cname]['content1'].'                                     ';
-			$constellationContent .= $constellationdb['constellation'][$cname]['content2'].'                                     ';
-			$constellationContent .= $constellationdb['constellation'][$cname]['content3'].'                                     ';
-			$constellationContent .= $constellationdb['constellation'][$cname]['content4'].'                                     ';
-			$constellationContent .= $constellationdb['constellation'][$cname]['content5'].'                                     ';
-			$constellationContent .= $constellationdb['constellation'][$cname]['content6'].'                                     ';
-			$constellationContent .= $constellationdb['constellation'][$cname]['content7'].'                                     ';
-            
+            $constellationContent .= $cname.'今日運勢:                                     ';
+            $constellationContent .= $constellationdb['constellation'][$cname]['content'].'                                     ';          
 
             $payload = [
                 'replyToken' => $event['replyToken'],
