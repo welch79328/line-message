@@ -186,7 +186,11 @@ foreach ($obj['events'] as $event) {
 								"imageBackgroundColor"=> "#FFFFFF",
 								"title"=> $newsdb['news'][0]['title'],
 								"text"=> "",
-								"defaultAction"=> [],
+								"defaultAction"=> [
+									"type": "uri",
+									"label": "View detail",
+									"uri": "http://example.com/page/222"
+								],
 								"actions"=> [
 									[
 										"type"=> "uri",
@@ -200,7 +204,11 @@ foreach ($obj['events'] as $event) {
 								"imageBackgroundColor"=> "#FFFFFF",
 								"title"=> $newsdb['news'][0]['title'],
 								"text"=> "",
-								"defaultAction"=> [],
+								"defaultAction"=> [
+									"type": "uri",
+									"label": "View detail",
+									"uri": "http://example.com/page/222"
+								],
 								"actions"=> [
 									[
 										"type"=> "uri",
