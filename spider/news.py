@@ -16,7 +16,7 @@ html = urlopen('https://tw.appledaily.com/new/realtime/2')
 bsObj = BeautifulSoup(html, "lxml")
 
 news_list = bsObj.findAll("div", {"class":"item"})
-
+key = 0
 for news in news_list:
     value = {}
     href = news.find('a')['href']
@@ -36,8 +36,9 @@ for news in news_list:
             jsonFile = open(os.path.dirname(os.path.abspath(__file__))+"news.json","r")
             fileContent = jsonFile.read()
             new_dict = json.loads(fileContent)
-            key = len(new_dict['news'])
+            #key = len(new_dict['news'])
             new_dict['news'].setdefault(key,value)
+			key = key + 1
         except:
             print ('error')
 
