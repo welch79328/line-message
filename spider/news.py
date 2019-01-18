@@ -33,11 +33,11 @@ for news in news_list:
         value['img_url'] = str(file_name)+'.jpg'
         urlretrieve(img_url, os.path.dirname(os.path.abspath(__file__))+'/newsfile/'+str(file_name)+'.jpg')
         try:
-            jsonFile = open(os.path.dirname(os.path.abspath(__file__))+"news.json","r")
-            fileContent = jsonFile.read()
-            new_dict = json.loads(fileContent)
-            #key = len(new_dict['news'])
-            new_dict['news'].setdefault(key,value)
+			jsonFile = open(os.path.dirname(os.path.abspath(__file__))+"news.json","r")
+			fileContent = jsonFile.read()
+			new_dict = json.loads(fileContent)
+			#key = len(new_dict['news'])
+			new_dict['news'].setdefault(key,value)
 			key = key + 1
         except:
             print ('error')
