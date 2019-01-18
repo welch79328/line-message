@@ -176,63 +176,137 @@ foreach ($obj['events'] as $event) {
             'messages' => [
                 [
                     "type" => "template",
-                    "altText" => "this is a carousel template",
+                    "altText" => "即時新聞",
                     "template" => [
                         "type" => "carousel",
                         "columns" => [
                             [
-                                "thumbnailImageUrl" => "https://example.com/bot/images/item1.jpg",
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][0]['img_url'],
                                 "imageBackgroundColor" => "#FFFFFF",
-                                "title" => "this is menu",
-                                "text" => "description",
-                                "defaultAction" => [
-                                    "type" => "uri",
-                                    "label" => "View detail",
-                                    "uri" => "http://example.com/page/123"
-                                ],
+                                "title" => $newsdb['news'][0]['title'],
+				"text" => " ",
                                 "actions" => [
-                                    [
-                                        "type" => "postback",
-                                        "label" => "Buy",
-                                        "data" => "action=buy&itemid=111"
-                                    ],
-                                    [
-                                        "type" => "postback",
-                                        "label" => "Add to cart",
-                                        "data" => "action=add&itemid=111"
-                                    ],
-                                    [
+				    [
                                         "type" => "uri",
-                                        "label" => "View detail",
-                                        "uri" => "http://example.com/page/111"
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][0]['href']
                                     ]
                                 ]
                             ],
                             [
-                                "thumbnailImageUrl" => "https://example.com/bot/images/item2.jpg",
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][1]['img_url'],
                                 "imageBackgroundColor" => "#000000",
-                                "title" => "this is menu",
-                                "text" => "description",
-                                "defaultAction" => [
-                                    "type" => "uri",
-                                    "label" => "View detail",
-                                    "uri" => "http://example.com/page/222"
-                                ],
+                                "title" => $newsdb['news'][1]['title'],
+                                "text" => " ",
                                 "actions" => [
                                     [
-                                        "type" => "postback",
-                                        "label" => "Buy",
-                                        "data" => "action=buy&itemid=222"
-                                    ],
-                                    [
-                                        "type" => "postback",
-                                        "label" => "Add to cart",
-                                        "data" => "action=add&itemid=222"
-                                    ],
-                                    [
                                         "type" => "uri",
-                                        "label" => "View detail",
-                                        "uri" => "http://example.com/page/222"
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][1]['href']
+                                    ]
+                                ]
+                            ],
+			    [
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][2]['img_url'],
+                                "imageBackgroundColor" => "#FFFFFF",
+                                "title" => $newsdb['news'][2]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][2]['href']
+                                    ]
+                                ]
+                            ],  
+                            [   
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][3]['img_url'],
+                                "imageBackgroundColor" => "#000000",
+                                "title" => $newsdb['news'][3]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][3]['href']
+                                    ]
+                                ]
+                            ],
+			    [
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][4]['img_url'],
+                                "imageBackgroundColor" => "#FFFFFF",
+                                "title" => $newsdb['news'][4]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][4]['href']
+                                    ]
+                                ]
+                            ],  
+                            [   
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][5]['img_url'],
+                                "imageBackgroundColor" => "#000000",
+                                "title" => $newsdb['news'][5]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][5]['href']
+                                    ]
+                                ]
+                            ],
+			    [
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][6]['img_url'],
+                                "imageBackgroundColor" => "#FFFFFF",
+                                "title" => $newsdb['news'][6]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][6]['href']
+                                    ]
+                                ]
+                            ],  
+                            [   
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][7]['img_url'],
+                                "imageBackgroundColor" => "#000000",
+                                "title" => $newsdb['news'][7]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][7]['href']
+                                    ]
+                                ]
+                            ],
+			    [
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][8]['img_url'],
+                                "imageBackgroundColor" => "#FFFFFF",
+                                "title" => $newsdb['news'][8]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][8]['href']
+                                    ]
+                                ]
+                            ],  
+                            [   
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][9]['img_url'],
+                                "imageBackgroundColor" => "#000000",
+                                "title" => $newsdb['news'][9]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][9]['href']
                                     ]
                                 ]
                             ]
