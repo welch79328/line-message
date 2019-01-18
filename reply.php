@@ -150,12 +150,12 @@ foreach ($obj['events'] as $event) {
             $constellationContent .= $constellationdb['constellation'][$cname]['title'].'                                     ';
             $constellationContent .= $constellationdb['constellation'][$cname]['content0'].'                                     ';
             $constellationContent .= $constellationdb['constellation'][$cname]['content1'].'                                     ';
-	    $constellationContent .= $constellationdb['constellation'][$cname]['content2'].'                                     ';
-	    $constellationContent .= $constellationdb['constellation'][$cname]['content3'].'                                     ';
-	    $constellationContent .= $constellationdb['constellation'][$cname]['content4'].'                                     ';
-	    $constellationContent .= $constellationdb['constellation'][$cname]['content5'].'                                     ';
-	    $constellationContent .= $constellationdb['constellation'][$cname]['content6'].'                                     ';
-	    $constellationContent .= $constellationdb['constellation'][$cname]['content7'].'                                     ';          
+	        $constellationContent .= $constellationdb['constellation'][$cname]['content2'].'                                     ';
+	        $constellationContent .= $constellationdb['constellation'][$cname]['content3'].'                                     ';
+	        $constellationContent .= $constellationdb['constellation'][$cname]['content4'].'                                     ';
+	        $constellationContent .= $constellationdb['constellation'][$cname]['content5'].'                                     ';
+	        $constellationContent .= $constellationdb['constellation'][$cname]['content6'].'                                     ';
+	        $constellationContent .= $constellationdb['constellation'][$cname]['content7'].'                                     ';          
 
             $payload = [
                 'replyToken' => $event['replyToken'],
@@ -172,72 +172,31 @@ foreach ($obj['events'] as $event) {
 
 
     if ($event['message']['text'] == '測試新聞') {
+        $columnsArray = [];
+        for ($i=0; $i < 10; $i++) { 
+            $list = [
+                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb[$i]['img_url'],
+                "imageBackgroundColor" => "#FFFFFF",
+                "title" => $newsdb[$i]['title'],
+                "actions" => [
+                    [
+                        "type" => "uri",
+                        "label" => "查看更多",
+                        "uri" => $newsdb[$i]['href']
+                    ]
+                ]
+            ]
+            array_push($columnsArray,$list);
+        }
         $payload = [
             'replyToken' => $event['replyToken'],
             'messages' => [
                 [
                     "type" => "template",
-                    "altText" => "this is a carousel template",
+                    "altText" => "即時新聞",
                     "template" => [
                         "type" => "carousel",
-                        "columns" => [
-                            [
-                                "thumbnailImageUrl" => "https://example.com/bot/images/item1.jpg",
-                                "imageBackgroundColor" => "#FFFFFF",
-                                "title" => "this is menu",
-                                "text" => "description",
-                                "defaultAction" => [
-                                    "type" => "uri",
-                                    "label" => "View detail",
-                                    "uri" => "http://example.com/page/123"
-                                ],
-                                "actions" => [
-                                    [
-                                        "type" => "postback",
-                                        "label" => "Buy",
-                                        "data" => "action=buy&itemid=111"
-                                    ],
-                                    [
-                                        "type" => "postback",
-                                        "label" => "Add to cart",
-                                        "data" => "action=add&itemid=111"
-                                    ],
-                                    [
-                                        "type" => "uri",
-                                        "label" => "View detail",
-                                        "uri" => "http://example.com/page/111"
-                                    ]
-                                ]
-                            ],
-                            [
-                                "thumbnailImageUrl" => "https://example.com/bot/images/item2.jpg",
-                                "imageBackgroundColor" => "#000000",
-                                "title" => "this is menu",
-                                "text" => "description",
-                                "defaultAction" => [
-                                    "type" => "uri",
-                                    "label" => "View detail",
-                                    "uri" => "http://example.com/page/222"
-                                ],
-                                "actions" => [
-                                    [
-                                        "type" => "postback",
-                                        "label" => "Buy",
-                                        "data" => "action=buy&itemid=222"
-                                    ],
-                                    [
-                                        "type" => "postback",
-                                        "label" => "Add to cart",
-                                        "data" => "action=add&itemid=222"
-                                    ],
-                                    [
-                                        "type" => "uri",
-                                        "label" => "View detail",
-                                        "uri" => "http://example.com/page/222"
-                                    ]
-                                ]
-                            ]
-                        ],
+                        "columns" => $columnsArray,
                         "imageAspectRatio" => "rectangle",
                         "imageSize" => "cover"
                     ]

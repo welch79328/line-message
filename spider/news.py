@@ -26,12 +26,12 @@ for news in news_list:
 
     value['href'] = href
     value['title'] = title
-    value['img_url'] = img_url
 
     try:
         # 記得更改想要下載到的位
         file_name = int(time.time())+random.randint(0,1000)
-        urlretrieve(img_url, os.path.dirname(os.path.abspath(__file__))+'/file/'+str(file_name)+'.jpg')
+        value['img_url'] = str(file_name)+'.jpg'
+        urlretrieve(img_url, os.path.dirname(os.path.abspath(__file__))+'/newsfile/'+str(file_name)+'.jpg')
         try:
             jsonFile = open(os.path.dirname(os.path.abspath(__file__))+"news.json","r")
             fileContent = jsonFile.read()
