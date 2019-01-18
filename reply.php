@@ -172,35 +172,48 @@ foreach ($obj['events'] as $event) {
 
 
     if ($event['message']['text'] == '測試新聞') {
-        $columnsArray = [];
-        for ($i=0; $i < 10; $i++) { 
-            $list = [
-                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb[$i]['img_url'],
-                "imageBackgroundColor" => "#FFFFFF",
-                "title" => $newsdb[$i]['title'],
-                "actions" => [
-                    [
-                        "type" => "uri",
-                        "label" => "查看更多",
-                        "uri" => $newsdb[$i]['href']
-                    ]
-                ]
-            ]
-            array_push($columnsArray,$list);
-        }
         $payload = [
             'replyToken' => $event['replyToken'],
             'messages' => [
                 [
-                    "type" => "template",
-                    "altText" => "即時新聞",
-                    "template" => [
-                        "type" => "carousel",
-                        "columns" => $columnsArray,
-                        "imageAspectRatio" => "rectangle",
-                        "imageSize" => "cover"
-                    ]
-                ]
+					"type"=> "template",
+					"altText"=> "即時新聞",
+					"template"=> [
+						"type"=> "carousel",
+						"columns"=> [
+							[
+								"thumbnailImageUrl"=> FILE_URL."newsfile/".$newsdb['news'][0]['img_url'],
+								"imageBackgroundColor"=> "#FFFFFF",
+								"title"=> $newsdb['news'][0]['title'],
+								"text"=> "",
+								"defaultAction"=> [],
+								"actions"=> [
+									[
+										"type"=> "uri",
+										"label"=> "查看更多",
+										"uri"=> $newsdb['news'][0]['href']
+									]
+								]
+							],
+							[
+								"thumbnailImageUrl"=> FILE_URL."newsfile/".$newsdb['news'][0]['img_url'],
+								"imageBackgroundColor"=> "#FFFFFF",
+								"title"=> $newsdb['news'][0]['title'],
+								"text"=> "",
+								"defaultAction"=> [],
+								"actions"=> [
+									[
+										"type"=> "uri",
+										"label"=> "查看更多",
+										"uri"=> $newsdb['news'][0]['href']
+									]
+								]
+							]
+						],
+						"imageAspectRatio"=> "rectangle",
+						"imageSize"=> "cover"
+					]
+				]
             ]
         ];
         $sedMessage = true;
