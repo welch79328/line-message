@@ -18,14 +18,14 @@ bsObj = BeautifulSoup(html, "lxml")
 news_list = bsObj.findAll("div", {"class":"item"})
 key = 0
 for news in news_list:
-    value = {}
-    href = news.find('a')['href']
-    img = news.find('img')
-    title = img['alt']
-    img_url = 'https:'+img['data-src']
+	value = {}
+	href = news.find('a')['href']
+	img = news.find('img')
+	title = img['alt']
+	img_url = 'https:'+img['data-src']
 
-    value['href'] = href
-    value['title'] = title
+	value['href'] = href
+	value['title'] = title
 
 	try:
 		# 記得更改想要下載到的位
