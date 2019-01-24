@@ -170,7 +170,7 @@ foreach ($obj['events'] as $event) {
         }
     }
 
-	if ($event['message']['text'] == '測試新聞') {
+	if ($event['message']['text'] == '新聞') {
         $payload = [
             'replyToken' => $event['replyToken'],
             'messages' => [
