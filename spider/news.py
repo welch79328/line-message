@@ -12,17 +12,19 @@ import random
 
 new_dict = {"news": {}}
 
-html = urlopen('https://tw.appledaily.com/new/realtime/2')
+html = urlopen('https://www.nownews.com/')
 bsObj = BeautifulSoup(html, "lxml")
 
-news_list = bsObj.findAll("div", {"class":"item"})
+news_list = bsObj.findAll("div", {"class":"td-block-span6"})
 key = 0
 for news in news_list:
 	value = {}
 	href = news.find('a')['href']
 	img = news.find('img')
-	title = img['alt']
-	img_url = 'https:'+img['data-src']
+	title = news.find('a')['title']
+	img_url1 = img['src'].split("w=100&q=70&", 1)
+	img_url2 = img_url1[1].split("-100x70", 1)
+	img_url = img_url1[0] + img_url2[0] + img_url2[1]
 
 	value['href'] = href
 	value['title'] = title
