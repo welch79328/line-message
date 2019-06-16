@@ -14,6 +14,7 @@ new_dict = {"news": {}}
 
 html = urlopen('https://www.nownews.com/')
 bsObj = BeautifulSoup(html, "lxml")
+filepath = os.path.dirname(os.path.abspath(__file__))
 
 news_list = bsObj.findAll("div", {"class":"td-block-span6"})
 key = 0
@@ -33,18 +34,25 @@ for news in news_list:
 		# 記得更改想要下載到的位
 		file_name = int(time.time())+random.randint(0,1000)
 		value['img_url'] = str(file_name)+'.jpg'
-		urlretrieve(img_url, os.path.dirname(os.path.abspath(__file__))+'/newsfile/'+str(file_name)+'.jpg')
+		if not os.path.exists(filepath+"/file/news/"):
+			os.makedirs(filepath+"/file/news/")
+			os.chmod(filepath+"/file/news/", 0o777)
+
+		if not os.path.exists(filepath+"/json/news.json"): 
+			open(filepath+"/json/news.json","w")
+
+		urlretrieve(img_url, filepath+'/file/news/'+str(file_name)+'.jpg')
 		try:
-			jsonFile = open(os.path.dirname(os.path.abspath(__file__))+"news.json","r")
-			fileContent = jsonFile.read()
-			new_dict = json.loads(fileContent)
-			#key = len(new_dict['news'])
+			jsonFile = open(filepath+"/json/news.json","r")
+			if jsonFile == False:
+				fileContent = jsonFile.read()
+				new_dict = json.loads(fileContent)
 			new_dict['news'].setdefault(key,value)
 			key = key + 1
 		except:
 			print ('error')
 
-		with open(os.path.dirname(os.path.abspath(__file__))+"news.json","w") as f:
+		with open(filepath+"/json/news.json","w") as f:
 			json.dump(new_dict,f)
 			print("加载入文件完成...")
 	except:
