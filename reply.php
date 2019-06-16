@@ -52,6 +52,21 @@ foreach ($obj['events'] as $event) {
         $sedMessage = true;
     }
 
+    if ($event['message']['text'] == '捷運路線') {
+
+        $payload = [
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+                [
+                    "type"=> "image",
+                    "originalContentUrl"=> "https://adot.com.tw/message/images/mrt.jpg",
+                    "previewImageUrl"=>"https://adot.com.tw/message/images/mrt.jpg"
+                ]
+            ]
+        ];
+        $sedMessage = true;
+    }
+
 
 	if ($event['message']['text'] == '抽') {
 		$beautyRand = array_rand($beautydb['beauty'],1);
@@ -135,13 +150,12 @@ foreach ($obj['events'] as $event) {
             $constellationContent .= $constellationdb['constellation'][$cname]['title'].'                                     ';
             $constellationContent .= $constellationdb['constellation'][$cname]['content0'].'                                     ';
             $constellationContent .= $constellationdb['constellation'][$cname]['content1'].'                                     ';
-			$constellationContent .= $constellationdb['constellation'][$cname]['content2'].'                                     ';
-			$constellationContent .= $constellationdb['constellation'][$cname]['content3'].'                                     ';
-			$constellationContent .= $constellationdb['constellation'][$cname]['content4'].'                                     ';
-			$constellationContent .= $constellationdb['constellation'][$cname]['content5'].'                                     ';
-			$constellationContent .= $constellationdb['constellation'][$cname]['content6'].'                                     ';
-			$constellationContent .= $constellationdb['constellation'][$cname]['content7'].'                                     ';
-            
+	        $constellationContent .= $constellationdb['constellation'][$cname]['content2'].'                                     ';
+	        $constellationContent .= $constellationdb['constellation'][$cname]['content3'].'                                     ';
+	        $constellationContent .= $constellationdb['constellation'][$cname]['content4'].'                                     ';
+	        $constellationContent .= $constellationdb['constellation'][$cname]['content5'].'                                     ';
+	        $constellationContent .= $constellationdb['constellation'][$cname]['content6'].'                                     ';
+	        $constellationContent .= $constellationdb['constellation'][$cname]['content7'].'                                     ';          
 
             $payload = [
                 'replyToken' => $event['replyToken'],
@@ -154,6 +168,156 @@ foreach ($obj['events'] as $event) {
             ];
         	$sedMessage = true;
         }
+    }
+
+	if ($event['message']['text'] == '新聞') {
+        $payload = [
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+                [
+                    "type" => "template",
+                    "altText" => "即時新聞",
+                    "template" => [
+                        "type" => "carousel",
+                        "columns" => [
+                            [
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][0]['img_url'],
+                                "imageBackgroundColor" => "#FFFFFF",
+                                "title" => $newsdb['news'][0]['title'],
+				"text" => " ",
+                                "actions" => [
+				    [
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][0]['href']
+                                    ]
+                                ]
+                            ],
+                            [
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][1]['img_url'],
+                                "imageBackgroundColor" => "#000000",
+                                "title" => $newsdb['news'][1]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][1]['href']
+                                    ]
+                                ]
+                            ],
+			    [
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][2]['img_url'],
+                                "imageBackgroundColor" => "#FFFFFF",
+                                "title" => $newsdb['news'][2]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][2]['href']
+                                    ]
+                                ]
+                            ],  
+                            [   
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][3]['img_url'],
+                                "imageBackgroundColor" => "#000000",
+                                "title" => $newsdb['news'][3]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][3]['href']
+                                    ]
+                                ]
+                            ],
+			    [
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][4]['img_url'],
+                                "imageBackgroundColor" => "#FFFFFF",
+                                "title" => $newsdb['news'][4]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][4]['href']
+                                    ]
+                                ]
+                            ],  
+                            [   
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][5]['img_url'],
+                                "imageBackgroundColor" => "#000000",
+                                "title" => $newsdb['news'][5]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][5]['href']
+                                    ]
+                                ]
+                            ],
+			    [
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][6]['img_url'],
+                                "imageBackgroundColor" => "#FFFFFF",
+                                "title" => $newsdb['news'][6]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][6]['href']
+                                    ]
+                                ]
+                            ],  
+                            [   
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][7]['img_url'],
+                                "imageBackgroundColor" => "#000000",
+                                "title" => $newsdb['news'][7]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][7]['href']
+                                    ]
+                                ]
+                            ],
+			    [
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][8]['img_url'],
+                                "imageBackgroundColor" => "#FFFFFF",
+                                "title" => $newsdb['news'][8]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][8]['href']
+                                    ]
+                                ]
+                            ],  
+                            [   
+                                "thumbnailImageUrl" => FILE_URL."newsfile/".$newsdb['news'][9]['img_url'],
+                                "imageBackgroundColor" => "#000000",
+                                "title" => $newsdb['news'][9]['title'],
+                                "text" => " ",
+                                "actions" => [
+                                    [   
+                                        "type" => "uri",
+                                        "label" => "查看更多",
+                                        "uri" => $newsdb['news'][9]['href']
+                                    ]
+                                ]
+                            ]
+                        ],
+                        "imageAspectRatio" => "rectangle",
+                        "imageSize" => "cover"
+                    ]
+                ]
+            ]
+        ];
+        $sedMessage = true;
     }
 
 	if ($sedMessage) {
