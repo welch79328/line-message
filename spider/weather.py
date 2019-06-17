@@ -62,13 +62,14 @@ for city in citys:
 #	print (key)
 #	print (value)
 	try:
-		jsonFile = open(os.path.dirname(os.path.abspath(__file__))+"weather.json","r")
+		print(os.path.dirname(os.path.abspath(__file__))+"/json/weather.json")
+		jsonFile = open(os.path.dirname(os.path.abspath(__file__))+"/json/weather.json","r")
 		fileContent = jsonFile.read()
 		new_dict['weather'].setdefault(key,value)
 
 	except:
 		print ('error')
 
-	with open(os.path.dirname(os.path.abspath(__file__))+"weather.json","w") as f:
+	with open(os.path.dirname(os.path.abspath(__file__))+"/json/weather.json","w") as f:
 		json.dump(new_dict,f)
 		print("加载入文件完成...")

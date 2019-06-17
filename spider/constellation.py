@@ -27,13 +27,13 @@ for number in range(12):
                 aa = aa+1
 
         try:
-                jsonFile = open(os.path.dirname(os.path.abspath(__file__))+"constellation.json","r")
+                jsonFile = open(os.path.dirname(os.path.abspath(__file__))+"/json/constellation.json","r")
                 fileContent = jsonFile.read()
                 new_dict['constellation'].setdefault(key,value)
 
         except:
                 print ('error')
 
-        with open(os.path.dirname(os.path.abspath(__file__))+"constellation.json","w") as f:
+        with open(os.path.dirname(os.path.abspath(__file__))+"/json/constellation.json","w") as f:
                 json.dump(new_dict,f)
                 print("加载入文件完成...")
