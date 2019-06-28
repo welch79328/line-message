@@ -1,31 +1,37 @@
+import json
 from flask import Flask, request
-import repy as Repy
-import config
+
+from api import (
+    LineApi, LineParser
+)
+
+from models import (
+    TextSendMessage
+)
 
 app = Flask(__name__)
 
+CHANNEL_ACCESS_TOKEN = "ANWmBORlSQhnmfriPxH+Y7bwBxD+p2qnCJgrMC4Ipwe4z33cWCP68HE1Y2SFdw7WgTFpqbCjeXa0X47kVJoGTosT+q+nvMn3Afc3hwBG3QobxmaFHEN9np2HcboImqjUWLipDBZTK7EEtfwU1YLJiwdB04t89/1O/w1cDnyilFU="
+
+line_api = LineApi(CHANNEL_ACCESS_TOKEN)
+parser = LineParser()
+
 @app.route("/")
 def hello():
-    return "Hello, I love Digital Ocean!"
+	body = "Hello, I love Digital Ocean!"
+	body = request.get_data(as_text=True)
+	app.logger.info("Request body: " + body)
+	return body
 
-@app.route("/test")
-def test():
-	return config.CHANNEL_ACCESS_TOKEN
-
-@app.route("/testGet", methods=['GET'])
-def testGet():
-	aa = request.args.get('username')
-	return 'aaa'+aa
-
-@app.route("/testPost", methods=['POST'])
-def testPost():
-	if request.method == 'POST':
-		return 'Hello ' + request.form['username']
-
-@app.route("/repy", methods=['POST'])
+@app.route("/repy", methods=['GET','POST'])
 def repy():
-	message = Repy.message()
-	return message.run()
+	body = request.get_data(as_text=True)
+	events = parser.parser(body)
 
-if __name__ == "__main__":
-    app.run()
+	for event in events:
+		line_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=event.message.text)
+        )
+
+	return "OK"

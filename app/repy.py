@@ -2,18 +2,15 @@ from flask import request
 import json
 import os
 import pycurl
-import config
+
+	
 
 class message():
 	def __init__(self):
-		self.CHANNEL_ACCESS_TOKEN = config.CHANNEL_ACCESS_TOKEN
+		self.CHANNEL_ACCESS_TOKEN = CHANNEL_ACCESS_TOKE
 		self.text = ''
 		self.payload = {}
 		self.sendMessageStatus = False
-		
-	def getMessage(self):
-		body = json.loads(request.get_data(as_text=True))
-		return body
 
 	def messageProcess(self, body):
 		for event in body['events']:
