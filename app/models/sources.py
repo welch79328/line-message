@@ -1,9 +1,7 @@
 import warnings
-from abc import ABCMeta, abstractproperty
-from future.utils import with_metaclass
 from .base import Base
 
-class Source(with_metaclass(ABCMeta, Base)):
+class Source(Base):
     """Abstract Base Class of Source."""
 
     def __init__(self, **kwargs):
@@ -14,7 +12,6 @@ class Source(with_metaclass(ABCMeta, Base)):
         super(Source, self).__init__(**kwargs)
         self.type = None
 
-    @abstractproperty
     def sender_id(self):
         """Abstract property of id to send a message.
 

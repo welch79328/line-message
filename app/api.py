@@ -2,20 +2,10 @@ import json
 import pycurl
 
 from models.events import (
-    MessageEvent,
-    FollowEvent,
-    UnfollowEvent,
-    JoinEvent,
-    LeaveEvent,
-    PostbackEvent,
-    BeaconEvent,
-    AccountLinkEvent,
-    MemberJoinedEvent,
-    MemberLeftEvent,
-    ThingsEvent,
+    MessageEvent
 )
 
-class LineApi(object):
+class LineApi():
 	
 	def __init__(self, channel_access_token):
  
@@ -46,12 +36,12 @@ class LineApi(object):
 		pycurl_connect.perform()
 
 
-class LineParser(object):
+class LineParser():
 	"""docstring for Parser"""
 	def __init__(self):
 		super().__init__()
 
-	def parser(self, body):
+	def parser(self, body={}):
 
 		body_json = json.loads(body)
 		events = []
@@ -59,26 +49,6 @@ class LineParser(object):
 			event_type = event['type']
 			if event_type == 'message':
 				events.append(MessageEvent.new_from_json_dict(event))
-			elif event_type == 'follow':
-				events.append(FollowEvent.new_from_json_dict(event))
-			elif event_type == 'unfollow':
-				events.append(UnfollowEvent.new_from_json_dict(event))
-			elif event_type == 'join':
-				events.append(JoinEvent.new_from_json_dict(event))
-			elif event_type == 'leave':
-				events.append(LeaveEvent.new_from_json_dict(event))
-			elif event_type == 'postback':
-				events.append(PostbackEvent.new_from_json_dict(event))
-			elif event_type == 'beacon':
-				events.append(BeaconEvent.new_from_json_dict(event))
-			elif event_type == 'accountLink':
-				events.append(AccountLinkEvent.new_from_json_dict(event))
-			elif event_type == 'memberJoined':
-				events.append(MemberJoinedEvent.new_from_json_dict(event))
-			elif event_type == 'memberLeft':
-				events.append(MemberLeftEvent.new_from_json_dict(event))
-			elif event_type == 'things':
-				events.append(ThingsEvent.new_from_json_dict(event))
 			else:
 				LOGGER.warn('Unknown event type. type=' + event_type)
 

@@ -1,48 +1,14 @@
 import json
 import utils
 
-class Base(object):
+class Base():
     """Base class of model.
 
     Suitable for JSON base data.
     """
 
     def __init__(self, **kwargs):
-        """__init__ method.
-
-        :param kwargs:
-        """
         pass
-
-    def __str__(self):
-        """__str__ method.
-
-        :return:
-        """
-        return self.as_json_string()
-
-    def __repr__(self):
-        """__repr__ method.
-
-        :return:
-        """
-        return str(self)
-
-    def __eq__(self, other):
-        """__eq__ method.
-
-        :param other:
-        :return:
-        """
-        return other and self.as_json_dict() == other.as_json_dict()
-
-    def __ne__(self, other):
-        """__ne__ method.
-
-        :param other:
-        :return:
-        """
-        return not self.__eq__(other)
 
     def as_json_string(self):
         """Return JSON string from this object.
@@ -111,18 +77,7 @@ class Base(object):
     def get_or_new_from_json_dict_with_types(
             data, cls_map, type_key='type'
     ):
-        """Get `cls` object w/ deserialization from json by using type key hint if needed.
 
-        If data is instance of one of cls, return data.
-        Else if data is instance of dict, create instance from dict.
-        Else, return None.
-
-        :param data:
-        :param cls_map:
-        :param type_key:
-        :rtype: object
-        :return:
-        """
         if isinstance(data, tuple(cls_map.values())):
             return data
         elif isinstance(data, dict):

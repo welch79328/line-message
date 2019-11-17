@@ -1,11 +1,7 @@
-from abc import ABCMeta
-
-from future.utils import with_metaclass
-
 from .base import Base
 
 
-class Message(with_metaclass(ABCMeta, Base)):
+class Message(Base):
     """Abstract Base Class of Message."""
 
     def __init__(self, id=None, **kwargs):
@@ -42,35 +38,54 @@ class TextMessage(Message):
 
 
 class ImageMessage(Message):
+    """ImageMessage.
 
-    def __init__():
-        print(1111)
+    https://developers.line.biz/en/reference/messaging-api/#wh-image
+
+    Message object which contains the image content sent from the source.
+    The binary image data can be retrieved with the Content API.
+    """
+
+    def __init__(self, id=None, content_provider=None, **kwargs):
+        """__init__ method.
+
+        :param str id: Message ID
+        :param content_provider: ContentProvider object
+        :type content_provider:
+            :py:class:`linebot.models.messages.ContentProvider`
+        :param kwargs:
+        """
+        super(ImageMessage, self).__init__(id=id, **kwargs)
+
+        self.type = 'image'
+        self.content_provider = self.get_or_new_from_json_dict(
+            content_provider, ContentProvider
+        )
 
 
 class VideoMessage(Message):
+    """VideoMessage.
 
-    def __init__():
-        print(1111)
+    https://developers.line.biz/en/reference/messaging-api/#wh-video
 
-class AudioMessage(Message):
+    Message object which contains the video content sent from the source.
+    The binary video data can be retrieved with the Content API.
+    """
 
-    def __init__():
-        print(1111)
+    def __init__(self, id=None, duration=None, content_provider=None, **kwargs):
+        """__init__ method.
 
+        :param str id: Message ID
+        :param long duration: Length of video file (milliseconds)
+        :param content_provider: ContentProvider object
+        :type content_provider:
+            :py:class:`linebot.models.messages.ContentProvider`
+        :param kwargs:
+        """
+        super(VideoMessage, self).__init__(id=id, **kwargs)
 
-class LocationMessage(Message):
-
-    def __init__():
-        print(1111)
-
-
-class StickerMessage(Message):
-    
-    def __init__():
-        print(1111)
-
-
-class FileMessage(Message):
-    
-    def __init__():
-        print(1111)
+        self.type = 'video'
+        self.duration = duration
+        self.content_provider = self.get_or_new_from_json_dict(
+            content_provider, ContentProvider
+        )
