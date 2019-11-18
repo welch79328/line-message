@@ -30,26 +30,25 @@ def reply():
 		abort(400)
 
 	for event in events:
-
 		if event.message.text == "文字":
-			message = TextSendMessage("文字")
+			reply = TextSendMessage("文字")
 
 		if event.message.text == "圖片":
-			original_content_url="https://adot.com.tw/message/images/13.jpg"
-			preview_image_url="https://adot.com.tw/message/images/13.jpg"
-			message = ImageSendMessage(original_content_url, preview_image_url)
+			original_content_url=""
+			preview_image_url=""
+			reply = ImageSendMessage(original_content_url, preview_image_url)
 
 		if event.message.text == "影片":
-			original_content_url="https://webrtc.github.io/samples/src/video/chrome.webm"
-			preview_image_url="https://webrtc.github.io/samples/src/video/chrome.webm"
-			message = VideoSendMessage(original_content_url, preview_image_url)
+			original_content_url=""
+			preview_image_url=""
+			reply = VideoSendMessage(original_content_url, preview_image_url)
 
 		line_api.reply_message(
 			event.reply_token,
-			message
+			reply
 		)
 
 	return "OK"
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', debug=True)
+    app.run(debug=True)

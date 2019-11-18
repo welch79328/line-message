@@ -24,8 +24,6 @@ class LineApi():
 			'messages': [message.as_json_dict() for message in messages]
 		}
 
-		print(data)
-
 		pycurl_connect = pycurl.Curl()
 		pycurl_connect.setopt(pycurl.URL, 'https://api.line.me/v2/bot/message/reply')
 		pycurl_connect.setopt(pycurl.POST, 1)
@@ -37,9 +35,8 @@ class LineApi():
 
 
 class LineParser():
-	"""docstring for Parser"""
 	def __init__(self):
-		super().__init__()
+		pass
 
 	def parser(self, body={}):
 
