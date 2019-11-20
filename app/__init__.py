@@ -1,6 +1,8 @@
 import json
 from flask import Flask, request, abort
 
+from __config__ import __channelAccessToken__
+
 from api import (
     LineApi, LineParser
 )
@@ -11,9 +13,7 @@ from models import (
 
 app = Flask(__name__)
 
-CHANNEL_ACCESS_TOKEN = "ZT0xaLhXoVui97bktWgEdJaGFz6G1Y+TARALFznkFQCoQuzb4zcT69ZJzqtkV5xKgTFpqbCjeXa0X47kVJoGTosT+q+nvMn3Afc3hwBG3QpuDe5LN5qhGzH56R5iMtlgBCNGqEnUV/Eew8NFv0l9AQdB04t89/1O/w1cDnyilFU="
-
-line_api = LineApi(CHANNEL_ACCESS_TOKEN)
+line_api = LineApi(__channelAccessToken__)
 parser = LineParser()
 
 @app.route("/")

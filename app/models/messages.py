@@ -44,3 +44,16 @@ class VideoMessage(Message):
         self.content_provider = self.get_or_new_from_json_dict(
             content_provider, ContentProvider
         )
+
+class ContentProvider(Base):
+
+    def __init__(self, type=None, original_content_url=None, preview_image_url=None, **kwargs):
+
+        super(ContentProvider, self).__init__(**kwargs)
+
+        self.type = type
+        self.original_content_url = original_content_url
+        self.preview_image_url = preview_image_url
+
+
+        
