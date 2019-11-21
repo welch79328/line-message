@@ -1,2 +1,2 @@
-spider/file
-spider/json
+*__pycache__
+*.DS_Store
