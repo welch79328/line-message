@@ -12,6 +12,30 @@ pip install -r requirements.txt
 vim lineMessage/app/__config__.py
 ```
 
+## Write LineMessage replu logic
+```
+vim lineMessage/app/__init__.py 
+def reply():
+	for event in events:
+		if event.message.text == "文字":
+			reply = TextSendMessage("文字")
+
+		if event.message.text == "圖片":
+			original_content_url=""
+			preview_image_url=""
+			reply = ImageSendMessage(original_content_url, preview_image_url)
+
+		if event.message.text == "影片":
+			original_content_url=""
+			preview_image_url=""
+			reply = VideoSendMessage(original_content_url, preview_image_url)
+
+		line_api.reply_message(
+			event.reply_token,
+			reply
+		)
+```
+
 ## deploy ubuntu-18.04 apache
 ```
 #install apache

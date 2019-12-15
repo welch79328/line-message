@@ -17,7 +17,7 @@ line_api = LineApi(__channelAccessToken__)
 parser = LineParser()
 
 @app.route("/")
-def hello():
+def index():
 	return "Hello"
 
 @app.route("/reply", methods=['POST'])
